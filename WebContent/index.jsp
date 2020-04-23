@@ -1,12 +1,11 @@
-<jsp:useBean id="calcula" class="beans.BeanCursoJsp"
-	type="beans.BeanCursoJsp"></jsp:useBean>
+<jsp:useBean id="calcula" class="br.com.jsp.beans.UserBean"
+	type="br.com.jsp.beans.UserBean"></jsp:useBean>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%@ taglib prefix="myprefix" uri="WEB-INF/testetag.tld"%>
-
-<%@ page import="java.util.Date"%>
 
 <!DOCTYPE html>
 <html>
@@ -15,10 +14,17 @@
 <title>Java Standard Taglib</title>
 </head>
 <body>
-	<form action="LoginServlet" method="post"></form>
-	<label for="login">Login</label>
-	<input type="text" id="login" name="login"><br>
-	<label for="password">Password</label>
-	<input type="text" id="password" name="password"><br>
+
+<c:out value="${'Bem vindo ao JSTL'}"></c:out>
+
+
+
+	<form action="LoginServlet" method="post">
+		<label for="user">User</label>
+		<input type="text" id="user" name="user"><br>
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password"><br>
+		<input type="submit" value="Login">	
+	</form>
 </body>
 </html>
