@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<c:out value="${'Bem vindo ao JSTL'}"></c:out>
+<c:out value="${'Bem vindo ao JSTL'}  "></c:out>
 
 
 
