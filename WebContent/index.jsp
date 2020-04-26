@@ -20,10 +20,13 @@
 
 
 	<form action="LoginServlet" method="post">
-		<label for="user">User</label>
-		<input type="text" id="user" name="user"><br>
-		<label for="password">Password</label>
-		<input type="password" id="password" name="password"><br>
+	
+		<label for="login">login</label>
+		<input type="text" id="login" name="login"><br>
+		
+		<label for="senha">senha</label>
+		<input type="password" id="senha" name="senha"><br>
+		
 		<input type="submit" value="Login">	
 	</form>
 </body>

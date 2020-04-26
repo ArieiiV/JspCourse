@@ -1,6 +1,7 @@
 package br.com.jsp.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,10 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.jsp.beans.UserBean;
+import br.com.jsp.dao.DaoLogin;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private DaoLogin daoLogin = new DaoLogin();
        
     public LoginServlet() {
         super();
@@ -27,20 +30,22 @@ public class LoginServlet extends HttpServlet {
 		
 		UserBean userBean = new UserBean();
 		
-		String user = request.getParameter("user");
-		String password = request.getParameter("password");
+		String login = request.getParameter("login");
+		String senha = request.getParameter("senha");
 		
-		if(userBean.validateCredentials(password, user)) {
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("acessoLiberado.jsp");
-			dispatcher.forward(request, response);
-			System.out.println("acesso permitido");
-			
-		}else {
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("acessoNegado.jsp");
-			dispatcher.forward(request, response);
-			System.out.println("acesso negado");
+		try {
+			if(daoLogin.validateCredentials(senha, login)) {				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("accessAllowed.jsp");
+				dispatcher.forward(request, response);
+				System.out.println("acesso permitido");
+				
+			}else {				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("accessDenied.jsp");
+				dispatcher.forward(request, response);
+				System.out.println("acesso negado");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
